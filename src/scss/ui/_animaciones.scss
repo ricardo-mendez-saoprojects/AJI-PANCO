@@ -1,0 +1,45 @@
+/* Aparición al hacer scroll. El observer añade .in una sola vez (unobserve). */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--t-slow), transform var(--t-slow);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* Marquesina de la foto de historia */
+@keyframes deslizar {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  background: rgba(11, 8, 9, 0.7);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  color: var(--accent-2);
+  text-transform: uppercase;
+}
+.marquee span {
+  display: inline-block;
+  animation: deslizar 18s linear infinite;
+}
+
+/* Respeta la preferencia del sistema: sin esto, el grano fijo más el reveal y
+   la marquesina son molestos para quien tiene sensibilidad al movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}

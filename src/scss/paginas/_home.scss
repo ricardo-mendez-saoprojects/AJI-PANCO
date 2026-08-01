@@ -1,0 +1,15 @@
+// Barril de las secciones de la home (misma idea que paginas/_home.scss de
+// SAOProjects). El orden es el de aparición en index.html; _responsive va al
+// final para que sus media queries ganen a las reglas base.
+@use 'hero';
+@use 'historia';
+@use 'combates';
+@use 'patrocinio';
+@use 'cifras';
+@use 'momentos';
+@use 'trayectoria';
+@use 'galeria';
+@use 'gimnasio';
+@use 'faq';
+@use 'contacto';
+@use 'responsive';

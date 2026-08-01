@@ -1,0 +1,10 @@
+<!-- PROVISIONAL. No hay logotipo del peleador todavía: esto reutiliza el marco
+     de esquinas que ya es el motivo gráfico de la web, con la A de Aji-Panko.
+     Sustituir en cuanto exista una marca real (también en apple-touch-icon y
+     en la imagen de Open Graph). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#0b0809"/>
+  <path d="M10 22V10h12M54 42v12H42" fill="none" stroke="#d21f2c" stroke-width="4"/>
+  <text x="32" y="43" font-family="Anton, 'Arial Narrow', sans-serif" font-size="30"
+        fill="#f2ece3" text-anchor="middle">A</text>
+</svg>

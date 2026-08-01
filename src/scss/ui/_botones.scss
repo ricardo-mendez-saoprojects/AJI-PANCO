@@ -1,0 +1,64 @@
+.btn {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px 28px;
+  border: 1px solid var(--accent);
+  background: none;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast),
+              border-color var(--t-fast), box-shadow var(--t-fast),
+              transform var(--t-fast);
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-fill {
+  background: var(--accent);
+  color: var(--on-accent);      // 5,29:1 sobre #d21f2c
+}
+
+/* El hover NO aclara el relleno a --accent-bright como hacía el mockup: el
+   texto blanco sobre #ff2f3e cae a 3,12:1 y suspende AA. El énfasis lo dan el
+   resplandor y el desplazamiento, que no tocan la legibilidad. */
+.btn-fill:hover,
+.btn-fill:focus-visible {
+  box-shadow: 0 0 30px -6px var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--bone);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 0 30px -8px var(--accent);
+}
+
+/* Variante oro para acciones secundarias del palmarés */
+.btn-gold {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+.btn-gold:hover,
+.btn-gold:focus-visible {
+  background: var(--accent-2);
+  color: var(--ink);
+  box-shadow: 0 0 30px -8px var(--accent-2);
+}
+
+.btn:active { transform: translateY(0); }
+
+/* Botón con icono delante (p. ej. «Seguir en Instagram») */
+.btn-ico {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-ico svg { width: 17px; height: 17px; fill: currentColor; flex: 0 0 17px; }

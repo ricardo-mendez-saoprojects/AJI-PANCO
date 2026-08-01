@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+.cache/
+
+# public/build/ SÍ se versiona: index.html lo consume directamente y es lo que
+# permite servir la web sin compilar. Ejecuta `npm run build` (producción,
+# minificado) antes de commitear cambios de SCSS, JS o imágenes. Los sourcemaps
+# que genera `npm run dev` no se suben.
+*.map
+
+# Assets de terceros que solo sirvieron de referencia visual (tema DevStack de
+# YOOtheme, iconos de stock de Icons8/Flaticon). No los usa la web y no se
+# redistribuyen: se quedan en local.
+src/img/sin-usar/referencia/

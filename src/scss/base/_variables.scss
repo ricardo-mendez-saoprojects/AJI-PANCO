@@ -1,0 +1,69 @@
+// ═══ Tokens Andre Fernández «Aji-Panco» ═══
+//
+// Web OSCURA Y SOLO OSCURA. A diferencia de SAOProjects y Horario CIB no hay
+// conmutador de tema: el negro cálido es la identidad del deporte de contacto,
+// no una preferencia del usuario. Por eso todo vive en :root y no existe un
+// bloque `body.light-mode`.
+//
+// Los nombres son SEMÁNTICOS (--accent, --accent-2) y no de color (--crimson,
+// --gold): sobre estos mismos tokens se montan las paletas alternativas de
+// `src/scss/paletas.scss`, donde el acento es oro, cian o jade. Un token
+// llamado --crimson conteniendo verde sería una mentira.
+//
+// ── Contrastes verificados de la paleta de producción (carmesí) ──
+//   Sobre --ink #0b0809 · sobre --surface #181215
+//   --bone       #f2ece3  16,98:1 · 15,74:1   títulos
+//   --body       #cfc7bf  11,94:1 · 11,07:1   párrafos
+//   --ash        #948b86   5,98:1 ·  5,54:1   texto secundario, metadatos
+//   --accent-text #ff2f3e   5,44:1 ·  5,04:1   eyebrows y enlaces de acento
+//   --accent-2   #b3893f   6,24:1 ·  5,78:1   oro (estrellas, marquesina)
+//   --on-accent  #ffffff sobre --accent #d21f2c → 5,29:1  (texto del botón)
+//   --accent     #d21f2c sobre --ink → 3,77:1  ≥3:1, suficiente como BORDE
+//                y relleno, insuficiente como texto → para eso, --accent-text.
+
+:root {
+  // ── Superficies
+  --ink:      #0b0809;   // fondo de página
+  --ink-2:    #100c0e;   // secciones alternas (.section.alt)
+  --surface:  #181215;   // tarjetas y bloques elevados
+  --line:     #2a2023;   // divisores y bordes de tarjeta
+  --ink-warm: #170d0f;   // base de los degradados cálidos (hero, cifras)
+
+  // ── Texto
+  --bone: #f2ece3;
+  --body: #cfc7bf;
+  --ash:  #948b86;
+
+  // ── Acento de marca
+  --accent:        #d21f2c;  // rellenos y bordes — NO usar como texto
+  --accent-text:   #ff2f3e;  // el acento cuando es texto (eyebrows, enlaces)
+  --accent-bright: #ff2f3e;  // realce de foco y hover
+  --accent-deep:   #6f0f16;  // stop oscuro de los degradados
+  --accent-glow:   rgba(210, 31, 44, 0.22);
+  --accent-soft:   rgba(210, 31, 44, 0.5);
+  --on-accent:     #ffffff;  // texto sobre --accent
+
+  // ── Acento secundario: oro. Marca los hitos (títulos, victorias, palmarés)
+  --accent-2:      #b3893f;
+  --accent-2-soft: rgba(179, 137, 63, 0.35);
+
+  // ── Geometría
+  // El mockup era de aristas vivas; las esquinas en pico resultaban duras sobre
+  // las fotos, así que todo lo que tiene superficie propia lleva radio. La
+  // escala es corta a propósito: tres valores y ninguna excepción suelta.
+  --radius:    14px;   // imágenes, tarjetas y bloques con fondo
+  --radius-sm:  8px;   // botones, etiquetas, chips y celdas de datos
+  --radius-lg: 20px;   // bloques destacados (banner de patrocinio, momentos)
+
+  --maxw:  1180px;
+  --nav-h: 68px;
+
+  // ── Tipografía
+  --font-head: 'Anton', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+
+  // ── Movimiento
+  --t-fast: 0.22s ease;
+  --t-slow: 0.7s ease;
+}

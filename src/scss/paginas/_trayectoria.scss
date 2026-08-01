@@ -1,0 +1,50 @@
+/* Línea de tiempo del palmarés. Sustituye a los testimonios inventados del
+   mockup: son datos verificables, no citas atribuidas a personas reales. */
+.timeline {
+  max-width: 820px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 34px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-deep), transparent);
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 34px;
+}
+.timeline li:last-child { padding-bottom: 0; }
+
+.timeline li::before {
+  border-radius: var(--radius-sm);
+  content: "";
+  position: absolute;
+  left: -34px; top: 7px;
+  width: 11px; height: 11px;
+  background: var(--ink);
+  border: 2px solid var(--accent);
+}
+.timeline li.hito::before { border-color: var(--accent-2); background: var(--accent-2); }
+
+.timeline .año {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-text);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+.timeline li.hito .año { color: var(--accent-2); }
+
+.timeline h3 {
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  margin: 6px 0 6px;
+}
+.timeline p { color: var(--ash); font-size: 0.94rem; }

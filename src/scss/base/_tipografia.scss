@@ -1,0 +1,30 @@
+/* Anton para titulares (condensada, mayúsculas, cartel de combate),
+   Inter para texto corrido y Space Mono para etiquetas y datos. */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 400;          // Anton solo tiene un peso
+  text-transform: uppercase;
+  color: var(--bone);
+  margin: 0;
+}
+
+.h-sec {
+  font-size: clamp(1.9rem, 4.6vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  margin: 0 0 20px;
+}
+
+p { margin: 0; }
+
+/* Datos numéricos: cifras de la misma anchura para que los récords y las
+   fechas no bailen al animarse el contador. */
+.tabular { font-variant-numeric: tabular-nums; }
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,54 @@
+/* ─── Galería «Del gimnasio al ring» ───
+   Mosaico en columnas (masonry con `columns`), no rejilla.
+
+   La rejilla anterior tenía filas de 200 px y `object-fit: cover`: con fotos
+   que van del 0,56 (verticales de vestuario) al 1,51 (apaisadas de pesaje) eso
+   significaba recortar casi todas, y en varias se comía la cabeza o el texto
+   sobreimpreso. Aquí cada figura ocupa su alto natural y NO se recorta nada,
+   así que no hacen falta rellenos ni huecos que tapar.
+
+   Contrapartida asumida: `columns` ordena de arriba abajo y luego salta de
+   columna, así que el orden de lectura no es el del HTML. En una galería de
+   fotos da igual. */
+
+.galeria {
+  columns: 4;
+  column-gap: 14px;
+}
+
+@media (max-width: 1100px) { .galeria { columns: 3; } }
+@media (max-width: 760px)  { .galeria { columns: 2; } }
+@media (max-width: 480px)  { .galeria { columns: 1; } }
+
+.galeria figure {
+  break-inside: avoid;
+  // Sin -webkit-column-break-inside, Safari parte las figuras entre columnas.
+  -webkit-column-break-inside: avoid;
+  position: relative;
+  margin: 0 0 14px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.galeria img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(0.35) contrast(1.05);
+  transition: transform 0.5s ease, filter 0.35s ease;
+}
+
+.galeria figure:hover img,
+.galeria figure:focus-within img { transform: scale(1.04); filter: none; }
+
+.galeria figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 22px 14px 12px;
+  background: linear-gradient(180deg, transparent, rgba(11, 8, 9, 0.92));
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--body);
+}

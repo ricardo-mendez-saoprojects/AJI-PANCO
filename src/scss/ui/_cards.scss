@@ -1,0 +1,105 @@
+/* Tarjetas de combate (rejilla de 3) */
+// align-items:center es lo que da la armonía de la fila: como las fotos ya no
+// se recortan, cada tarjeta mide lo que mida su imagen. La del campeonato es
+// vertical y por tanto la más alta, así que va en el centro y las dos
+// apaisadas quedan centradas a los lados.
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 22px;
+}
+
+.card {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 44px -22px var(--accent-soft);
+}
+
+// Sin aspect-ratio fijo: con 16/10 el cartel vertical del campeonato perdía la
+// mitad de la foto por arriba y por abajo. Ahora la altura la marca la imagen
+// y no se recorta nada.
+.card .thumb {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, #241316, var(--ink));
+  border-bottom: 1px solid var(--line);
+}
+
+.card .thumb img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(0.25) contrast(1.05);
+  transition: transform 0.4s ease, filter 0.3s ease;
+}
+.card:hover .thumb img { transform: scale(1.05); filter: none; }
+
+/* Etiqueta de estado del combate */
+.card .flag {
+  border-radius: var(--radius-sm);
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.card .flag.gold {
+  background: rgba(11, 8, 9, 0.78);
+  border: 1px solid var(--accent-2);
+  color: var(--accent-2);
+}
+
+.card .body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.card p { font-size: 0.9rem; color: var(--ash); flex: 1; }
+
+.card .meta {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: var(--ash);
+  text-transform: uppercase;
+}
+.card .meta span {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  padding: 5px 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.card .btn { align-self: center; padding: 11px 20px; font-size: 0.72rem; }

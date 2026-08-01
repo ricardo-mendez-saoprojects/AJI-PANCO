@@ -1,0 +1,90 @@
+/* Gimnasio: bloque de entrenamientos + mapa incrustado de Google.
+   Andre no solo compite, también entrena en el Kai Muay Free Fighters: es la
+   segunda vía de conversión de la web junto al patrocinio. */
+.gym {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+}
+
+.gym-lista { margin: 28px 0 32px; }
+
+.gym-lista li {
+  position: relative;
+  padding: 12px 0 12px 30px;
+  border-bottom: 1px solid var(--line);
+  color: var(--body);
+  font-size: 0.95rem;
+}
+.gym-lista li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 20px;
+  width: 12px; height: 2px;
+  background: var(--accent);
+}
+.gym-lista li b { color: var(--bone); font-weight: 600; }
+
+// Sin aspect-ratio ni `object-fit: cover`: la foto de entrenamiento es
+// vertical (1440×1799) y forzarla a 16/9 se comía la patada y la cabeza. La
+// altura la marca la imagen, igual que en las tarjetas de combate y la galería.
+.gym-foto {
+  border-radius: var(--radius);
+  margin: 0 0 16px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.gym-foto img {
+  width: 100%;
+  height: auto;
+}
+
+/* El iframe de Google Maps trae su propio fondo blanco; el marco y el filtro
+   lo integran con la paleta oscura sin tocar su funcionamiento. */
+.mapa {
+  border-radius: var(--radius);
+  position: relative;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+.mapa iframe {
+  width: 100%; height: 100%;
+  border: 0;
+  display: block;
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.7) contrast(0.9);
+}
+.mapa::before,
+.mapa::after {
+  content: "";
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 2px solid var(--accent);
+  pointer-events: none;
+  z-index: 1;
+}
+.mapa::before { top: 18px; left: 18px; border-right: 0; border-bottom: 0; }
+.mapa::after  { bottom: 18px; right: 18px; border-left: 0; border-top: 0; }
+
+.mapa-pie {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.mapa-pie a { color: var(--accent-text); }
+.mapa-pie a:hover { text-decoration: underline; }
+
+.enlace-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.enlace-ig svg { width: 14px; height: 14px; fill: currentColor; }

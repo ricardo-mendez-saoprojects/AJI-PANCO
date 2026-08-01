@@ -1,0 +1,72 @@
+/* La sección de combates usa .cards de ui/_cards.scss. Aquí solo lo propio
+   del bloque: la tarjeta destacada del próximo combate. */
+.combate-destacado {
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  border: 1px solid var(--accent);
+  background: var(--surface);
+  margin-bottom: 90px;
+  overflow: hidden;
+}
+
+.combate-destacado .cartel {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+}
+.combate-destacado .cartel img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.combate-destacado .info {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   // sin esto el botón se estira a todo el ancho
+  justify-content: center;
+  gap: 14px;
+}
+
+// El botón ocupa lo que piden su icono y su texto, no la columna entera.
+.combate-destacado .info .btn { align-self: flex-start; }
+
+.combate-destacado .titulo-evento {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.05;
+}
+
+.combate-destacado .versus {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--body);
+}
+.combate-destacado .versus b { color: var(--accent-text); }
+
+.combate-destacado .datos {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.combate-destacado .datos span {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 960px) {
+  .combate-destacado { grid-template-columns: 1fr; }
+  .combate-destacado .cartel { min-height: 260px; }
+  .combate-destacado .info { padding: 28px 24px; }
+}

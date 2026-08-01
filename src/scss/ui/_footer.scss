@@ -1,0 +1,64 @@
+.footer {
+  padding: 56px 0 40px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer .brand { font-size: 1.5rem; }
+
+.socials {
+  display: flex;
+  gap: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color var(--t-fast);
+}
+.socials a svg { width: 15px; height: 15px; fill: currentColor; }
+.socials a:hover,
+.socials a:focus-visible { color: var(--bone); }
+
+.footer .made {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--ash);
+}
+.footer .made a { color: var(--accent-text); }
+
+/* Botón flotante de WhatsApp — la vía de contacto principal del manager */
+.wa-float {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 30;
+  width: 54px; height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Verde WhatsApp oscurecido: el #25d366 oficial deja el icono blanco en
+  // 1,98:1. Este da 5,16:1, el mismo valor que usamos en SAOProjects.
+  background: #107d4f;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(16, 125, 79, 0.45);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.wa-float:hover,
+.wa-float:focus-visible {
+  transform: scale(1.1);
+  box-shadow: 0 12px 36px rgba(16, 125, 79, 0.55);
+}
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }

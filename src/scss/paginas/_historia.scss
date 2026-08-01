@@ -1,0 +1,83 @@
+.statement {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.stmt-img {
+  border-radius: var(--radius);
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #231317, #0a0708);
+  overflow: hidden;
+}
+
+// Entrada al ring (1440×1920) en una caja 4/5: el recorte es mínimo y este
+// encuadre deja la pasarela y la pirotecnia dentro.
+.stmt-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+/* Marco de esquinas: dos cuadrados recortados en las diagonales opuestas.
+   Es el motivo gráfico que se repite en toda la web. */
+.stmt-img::before,
+.stmt-img::after {
+  content: "";
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 2px solid var(--accent);
+  z-index: 1;
+}
+.stmt-img::before { top: 18px; left: 18px; border-right: 0; border-bottom: 0; }
+.stmt-img::after  { bottom: 18px; right: 18px; border-left: 0; border-top: 0; }
+
+/* :not(.eyebrow) es imprescindible: `.stmt-copy p` (0,1,1) gana a `.eyebrow`
+   (0,1,0) y dejaría el antetítulo de esta sección en color de párrafo en vez
+   de en el acento de marca. */
+.stmt-copy p:not(.eyebrow) { color: var(--body); margin: 0 0 16px; }
+.stmt-copy p.big { color: var(--bone); font-size: 1.14rem; }
+
+.feats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  margin: 34px 0;
+}
+
+.feat { text-align: center; }
+
+// margin-inline auto además del display:flex: el cuadrado tiene ancho fijo, así
+// que el text-align del padre no lo centra por sí solo.
+.feat .ic {
+  border-radius: var(--radius-sm);
+  width: 46px; height: 46px;
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  color: var(--accent-text);
+  margin: 0 auto 14px;
+}
+
+// h3 y no h4: dentro de la sección el encabezado anterior es el h2 del bloque,
+// así que un h4 saltaría un nivel de la jerarquía.
+.feat h3 {
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.feat p { font-size: 0.9rem; color: var(--ash); }
+
+/* «Ver trayectoria» centrado en su columna y con aire por arriba: pegado a la
+   izquierda quedaba colgando debajo del bloque de dos columnas de .feats. */
+.stmt-copy .btn {
+  display: block;
+  width: fit-content;
+  margin: 10px auto 0;
+}

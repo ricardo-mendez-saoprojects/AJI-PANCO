@@ -1,0 +1,201 @@
+/* ─── Momentos · acordeón horizontal ───
+   Adaptación del patrón de paneles que crecen al pasar el ratón. Tres cambios
+   respecto a la referencia:
+
+   1. Las fotos son <img> dentro de <picture>, no `background-image`. Así se
+      mantienen AVIF/WebP, `loading="lazy"` y los atributos width/height que
+      evitan CLS; con `background-image` habría que recurrir a `image-set()` y
+      se perdería la carga diferida.
+   2. Se anima `flex-grow` en lugar de `flex-basis`: evita el cálculo de
+      `100vw / n` y se comporta igual con cualquier número de paneles.
+   3. El texto no aparece SOLO al pasar el ratón. Se muestra también con
+      `:focus-within` (teclado) y siempre en pantallas sin puntero fino
+      (móvil), donde el hover no existe y el contenido quedaría inaccesible.
+
+   Los pies son descriptivos, no citas: no hay declaraciones reales de Andre
+   que atribuirle. */
+
+// A ancho completo, no dentro de .wrap: cuanto más ancho es el contenedor, más
+// espacio real gana el panel abierto y mejor se lee la foto.
+.momentos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: auto;
+  padding: 0 20px;
+}
+
+// De borde a borde en escritorio: quitar los 28 px de cada lado y bajar el
+// hueco de 10 a 8 px reparte ~11 px más de ancho a cada panel cerrado, que es
+// justo lo que les faltaba para que la foto se lea en reposo.
+@media (min-width: 1024px) {
+  .momentos {
+    flex-direction: row;
+    height: 78vh;
+    min-height: 560px;
+    max-height: 840px;
+    padding: 0;
+    gap: 8px;
+  }
+}
+
+.momento {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 190px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  cursor: pointer;              // señala que el panel se abre
+  transition: flex-grow 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.5s ease,
+              border-color 0.4s ease;
+}
+
+.momento img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+// Encuadre por panel. El panel abierto es una caja apaisada fija, así que algo
+// de recorte es inevitable: lo que se controla es QUÉ se recorta. Es lo mismo
+// que hace el `background-position` por elemento del patrón de referencia.
+// El orden sigue al del HTML; si se reordenan los paneles, revisar esto.
+.momento:nth-child(1) img { object-position: center 32%; }  // intercambio, cuadrada
+.momento:nth-child(2) img { object-position: center 42%; }  // patadas, apaisada
+.momento:nth-child(3) img { object-position: 42% center;  }  // cuerdas, apaisada
+.momento:nth-child(4) img { object-position: center 40%; }  // celebración, cuadrada
+.momento:nth-child(5) img { object-position: center 26%; }  // brazo en alto, vertical 0,75
+.momento:nth-child(6) img { object-position: center 38%; }  // decisión, apaisada
+
+/* Velo diagonal. En REPOSO va suave: con el 0,92 de antes los paneles cerrados
+   se veían casi negros y no invitaban a pulsar, que era el problema de fondo.
+   Solo se cierra a oscuro cuando el panel se abre, que es cuando el texto
+   necesita contraste encima. */
+.momento::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(25deg, rgba(11, 8, 9, 0.5), rgba(11, 8, 9, 0) 72%);
+  transition: background 0.5s ease;
+}
+
+.momento:hover::after,
+.momento:focus-within::after {
+  background: linear-gradient(25deg, rgba(11, 8, 9, 0.92), rgba(11, 8, 9, 0.1) 65%);
+}
+
+/* Marca de «pulsa aquí» en el panel cerrado: se va al abrirlo, cuando ya lo
+   sustituye el propio texto. */
+.momento::before {
+  content: "+";
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  width: 30px; height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: rgba(11, 8, 9, 0.55);
+  backdrop-filter: blur(4px);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--accent-text);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.momento:hover::before,
+.momento:focus-within::before {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.7);
+}
+
+// grow 14 contra los 5 paneles cerrados (14/19) deja el abierto en ~74 % del
+// ancho. Con 3,4 varias fotos llegaban recortadas de lado; con 11 aún se
+// quedaban cortas las apaisadas de combate.
+.momento:hover,
+.momento:focus-within {
+  flex-grow: 14;
+  border-color: var(--accent);
+}
+
+// Los paneles cerrados se estrechan a una banda cuando hay uno abierto, para
+// cederle todo el espacio posible sin llegar a desaparecer.
+@media (min-width: 1024px) {
+  .momentos:hover .momento,
+  .momentos:focus-within .momento { min-width: 46px; }
+}
+
+/* El panel es enfocable para que quien navega con teclado pueda desplegarlo
+   igual que con el ratón; sin esto el contenido sería inalcanzable. */
+.momento:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+
+.momento-texto {
+  position: absolute;
+  z-index: 1;
+  left: 9%; right: 9%;
+  bottom: 11%;
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.momento:hover .momento-texto,
+.momento:focus-within .momento-texto { opacity: 1; transform: none; }
+
+.momento-texto p {
+  font-family: var(--font-head);
+  font-size: clamp(1.15rem, 1.5vw, 1.6rem);
+  line-height: 1.12;
+  text-transform: uppercase;
+  color: var(--bone);
+  text-wrap: balance;
+  margin: 0 0 14px;
+  padding-top: 16px;
+  position: relative;
+}
+
+/* Filete de acento en lugar de las comillas de la referencia: esto no son
+   citas y unas comillas gigantes prometerían lo que no hay. */
+.momento-texto p::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 34px; height: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.momento-texto span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.momento-texto span::before { content: "— "; }
+
+/* Sin puntero fino (móvil y tabletas) no hay hover: el texto se queda visible,
+   los paneles no crecen, el velo va oscuro para que ese texto se lea y sobra
+   la marca de «pulsa aquí», porque no hay nada que pulsar. */
+@media (hover: none) {
+  .momento-texto { opacity: 1; transform: none; }
+  .momento:hover { flex-grow: 1; }
+  .momento::before { display: none; }
+  .momento::after {
+    background: linear-gradient(25deg, rgba(11, 8, 9, 0.92), rgba(11, 8, 9, 0.1) 65%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .momento { transition: filter 0.5s ease, border-color 0.4s ease; }
+  .momento-texto { transition: none; }
+}

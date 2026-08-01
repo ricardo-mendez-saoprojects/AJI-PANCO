@@ -1,0 +1,37 @@
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .hamburger { display: grid; }
+
+  .statement { grid-template-columns: 1fr; gap: 40px; }
+  .stmt-img { max-width: 420px; margin: 0 auto; }
+
+  .gym { grid-template-columns: 1fr; gap: 36px; }
+
+  .cards { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 44px; }
+  .sponsor-perks { grid-template-columns: 1fr; }
+  .contacto-vias { grid-template-columns: 1fr; }
+  .logo-band { grid-template-columns: 1fr 1fr; }
+  .sponsor-banner { padding: 56px 28px; }
+  .sponsor-banner .ghost { font-size: 14rem; }
+}
+// La galería ya no es rejilla sino mosaico de columnas: sus puntos de ruptura
+// viven en paginas/_galeria.scss, junto a la propiedad `columns`.
+
+@media (max-width: 600px) {
+  .section { padding: 72px 0; }
+  .wrap { padding: 0 20px; }
+
+  .cards { grid-template-columns: 1fr; }
+  .feats { grid-template-columns: 1fr; }
+  .stats { padding: 80px 0; }
+
+  .hero { padding: 120px 20px 72px; }
+  .hero-creds { flex-direction: column; width: 100%; }
+  .hero-creds .cred { border-right: 0; border-bottom: 1px solid var(--line); }
+  .hero-creds .cred:last-child { border-bottom: 0; }
+  .hero-acciones { flex-direction: column; align-items: stretch; }
+
+  .footer-row { flex-direction: column; align-items: flex-start; }
+  .wa-float { bottom: 16px; right: 16px; width: 48px; height: 48px; }
+}
