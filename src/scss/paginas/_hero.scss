@@ -36,27 +36,32 @@
 }
 
 .hero-nick {
-  font-size: clamp(4.2rem, 15vw, 11.5rem);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(3.2rem, 7.6vw, 8.4rem);
+  letter-spacing: -0.02em;
   line-height: 0.85;
   color: transparent;
-  -webkit-text-stroke: 2px var(--accent);
-  // Sin fallback, un navegador sin -webkit-text-stroke muestra un titular
-  // invisible: el paint-order + el text-shadow lo dejan legible igualmente.
+  -webkit-text-stroke-width: clamp(2px, 0.03em, 4.2px);
+  -webkit-text-stroke-color: var(--accent-bright);
   paint-order: stroke fill;
-  text-shadow: 0 0 40px rgba(11, 8, 9, 0.6);
+  filter: drop-shadow(0 3px 14px rgba(0, 0, 0, 0.85));
 }
 
 .hero-name {
-  font-size: clamp(1.3rem, 3.4vw, 2.1rem);
-  letter-spacing: 0.14em;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2.6vw, 1.8rem);
+  letter-spacing: 0.08em;
   margin-top: 18px;
-  color: var(--bone);
+  color: var(--body);
 }
 
 .hero-slogan {
   font-family: var(--font-mono);
-  font-size: clamp(0.78rem, 1.7vw, 0.95rem);
-  letter-spacing: 0.3em;
+  font-weight: 600;
+  font-size: clamp(0.72rem, 1.4vw, 0.88rem);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ash);
   margin: 22px 0 8px;
@@ -105,15 +110,16 @@
 .hero-creds .cred b {
   display: block;
   font-family: var(--font-head);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: var(--bone);
-  font-weight: 400;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
 .hero-creds .cred span {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ash);
 }
@@ -125,8 +131,9 @@
 .hero-logos__label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.24em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ash);
   margin-bottom: 14px;
