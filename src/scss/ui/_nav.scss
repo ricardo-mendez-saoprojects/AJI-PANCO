@@ -1,22 +1,34 @@
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
   padding: 0 28px;
-  background: rgba(11, 8, 9, 0.55);
-  backdrop-filter: blur(14px);
+  background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              left 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              right 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.4s ease,
+              border-radius 0.4s ease,
+              box-shadow 0.4s ease,
+              padding 0.4s ease,
+              height 0.4s ease;
 }
 
-.nav.scrolled {
-  background: rgba(11, 8, 9, 0.85);
-  border-bottom-color: var(--line);
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .brand {
@@ -33,6 +45,13 @@
   display: flex;
   gap: 28px;
   align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 1024px) and (max-width: 1180px) {
+  .nav-links { gap: 18px; }
 }
 
 .nav-links a:not(.btn) {
@@ -60,12 +79,68 @@
 .nav-links a:not(.btn):hover::after,
 .nav-links a:not(.btn):focus-visible::after { width: 100%; }
 
-.nav-links .btn { padding: 11px 20px; }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-/* ── Hamburguesa (solo móvil) ──
-   El mockup ocultaba .nav-links por debajo de 960 px y dejaba únicamente el
-   botón de patrocinio: la web se quedaba literalmente sin navegación en móvil.
-   Esto lo resuelve con el mismo patrón que SAOProjects. */
+.nav-actions .btn { padding: 11px 20px; }
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-social-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ash);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-social-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  display: block;
+}
+
+.nav-social-btn:hover,
+.nav-social-btn:focus-visible {
+  color: var(--bone);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Píldora flotante en escritorio (estilo SAOProjects) ── */
+@media (min-width: 1024px) {
+  .nav.scrolled {
+    top: 15px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: calc(100% - 100px);
+    max-width: 1080px;
+    border-radius: 32px;
+    background: rgba(11, 8, 9, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(210, 31, 44, 0.2) inset;
+    padding: 0 28px;
+  }
+}
+
+/* ── Menú móvil y hamburguesa ── */
 .hamburger {
   border-radius: var(--radius-sm);
   display: none;
@@ -86,6 +161,29 @@
 .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
 .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+@media (max-width: 1023px) {
+  .nav-links,
+  .nav-actions {
+    display: none;
+  }
+  .hamburger {
+    display: grid;
+  }
+  .nav.scrolled {
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    background: rgba(11, 8, 9, 0.85);
+    border-bottom-color: var(--line);
+    box-shadow: none;
+    padding: 0 28px;
+  }
+}
 
 .mobile-nav {
   position: fixed;
@@ -116,3 +214,9 @@
 }
 .mobile-nav a:not(.btn):hover { color: var(--accent-text); }
 .mobile-nav .btn { margin-top: 24px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav {
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+}

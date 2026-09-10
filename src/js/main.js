@@ -1,9 +1,9 @@
 /* ─── Andre Fernández «Aji-Panco» · main.js ─── */
 
-// ── Nav: fondo sólido al bajar
+// ── Nav: píldora flotante al bajar
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  nav?.classList.toggle('scrolled', window.scrollY > 20);
+  nav?.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
 // ── Menú móvil con atrapado de foco
