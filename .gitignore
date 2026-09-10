@@ -1,6 +1,7 @@
 node_modules/
 .DS_Store
 .cache/
+_dev/
 
 # public/build/ SÍ se versiona: index.html lo consume directamente y es lo que
 # permite servir la web sin compilar. Ejecuta `npm run build` (producción,

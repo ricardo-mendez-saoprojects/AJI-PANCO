@@ -152,8 +152,10 @@
 
 .momento-texto p {
   font-family: var(--font-head);
-  font-size: clamp(1.15rem, 1.5vw, 1.6rem);
-  line-height: 1.12;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
   color: var(--bone);
   text-wrap: balance;
@@ -176,8 +178,9 @@
 .momento-texto span {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ash);
 }

@@ -19,7 +19,9 @@
 
 .stat .num {
   font-family: var(--font-head);
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   line-height: 1;
   color: var(--bone);
   font-variant-numeric: tabular-nums;
@@ -28,8 +30,9 @@
 
 .stat .lbl {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   color: var(--ash);
   text-transform: uppercase;
   margin-top: 12px;
@@ -44,8 +47,9 @@
   border: 1px solid var(--line);
   overflow: hidden;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .record-bar div {

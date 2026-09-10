@@ -35,26 +35,30 @@
 
 .combate-destacado .titulo-evento {
   font-family: var(--font-head);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  line-height: 1.05;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
 .combate-destacado .versus {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--body);
 }
-.combate-destacado .versus b { color: var(--accent-text); }
+.combate-destacado .versus b { color: var(--accent-text); font-weight: 700; }
 
 .combate-destacado .datos {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ash);
 }

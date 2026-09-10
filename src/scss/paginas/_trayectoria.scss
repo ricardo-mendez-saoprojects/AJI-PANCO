@@ -34,8 +34,9 @@
 
 .timeline .año {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   color: var(--accent-text);
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
@@ -43,8 +44,10 @@
 .timeline li.hito .año { color: var(--accent-2); }
 
 .timeline h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
   font-size: 1.15rem;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
   margin: 6px 0 6px;
 }
 .timeline p { color: var(--ash); font-size: 0.94rem; }

@@ -27,9 +27,11 @@ const paths = {
   // en el repo pero no se compila: eran ~1 MB de peso muerto en el despliegue.
   imagenes: ['src/img/**/*', '!src/img/sin-usar/**'],
   bitmaps:  ['src/img/**/*.{png,jpg}', '!src/img/sin-usar/**'],
-  destCss:  'public/build/css',
-  destJs:   'public/build/js',
-  destImg:  'public/build/img',
+  fuentes:   'src/fonts/**/*.{woff,woff2}',
+  destCss:   'public/build/css',
+  destJs:    'public/build/js',
+  destImg:   'public/build/img',
+  destFonts: 'public/build/fonts',
 };
 
 // El .htaccess cachea el CSS un año, así que el build de producción le pone un
@@ -136,10 +138,16 @@ function versionAvif() {
     .pipe(dest(paths.destImg));
 }
 
+function fuentes() {
+  return src(paths.fuentes)
+    .pipe(dest(paths.destFonts));
+}
+
 function dev(done) {
-  watch(paths.scssAll, parallel(css, cssPaletas));
-  watch(paths.js,      javascript);
+  watch(paths.scssAll,  parallel(css, cssPaletas));
+  watch(paths.js,       javascript);
   watch(paths.imagenes, parallel(imagenes, versionWebp, versionAvif));
+  watch(paths.fuentes,  fuentes);
   done();
 }
 
@@ -148,9 +156,10 @@ exports.javascript  = javascript;
 exports.imagenes    = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-exports.dev   = series(parallel(css, cssPaletas, javascript, imagenes, versionWebp, versionAvif), dev);
+exports.fuentes     = fuentes;
+exports.dev   = series(parallel(css, cssPaletas, javascript, imagenes, versionWebp, versionAvif, fuentes), dev);
 exports.build = series(
-  parallel(cssBuild, cssPaletas, javascript, imagenes, versionWebp, versionAvif),
+  parallel(cssBuild, cssPaletas, javascript, imagenes, versionWebp, versionAvif, fuentes),
   revIndex,
   limpiaCss
 );

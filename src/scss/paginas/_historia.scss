@@ -60,6 +60,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-head);
+  font-weight: 800;
   font-size: 1.15rem;
   color: var(--accent-text);
   margin: 0 auto 14px;
@@ -68,8 +69,10 @@
 // h3 y no h4: dentro de la sección el encabezado anterior es el h2 del bloque,
 // así que un h4 saltaría un nivel de la jerarquía.
 .feat h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
   font-size: 1.05rem;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
   margin-bottom: 8px;
 }
 .feat p { font-size: 0.9rem; color: var(--ash); }
