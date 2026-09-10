@@ -2,12 +2,9 @@
   position: relative;
   padding: 110px 0;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(11, 8, 9, 0.88), rgba(11, 8, 9, 0.88)),
-    radial-gradient(90% 90% at 80% 20%, var(--accent-soft), transparent 60%),
-    var(--ink-warm);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: transparent;
+  border-top: 0;
+  border-bottom: 0;
 }
 
 .stats-grid {
@@ -45,6 +42,7 @@
   max-width: 720px;
   margin: 56px auto 0;
   border: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   font-family: var(--font-mono);
   font-size: 0.72rem;
