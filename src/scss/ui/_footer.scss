@@ -57,11 +57,37 @@
   background: #107d4f;
   border-radius: 50%;
   box-shadow: 0 8px 24px rgba(16, 125, 79, 0.45);
-  transition: transform var(--t-fast), box-shadow var(--t-fast);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(0) scale(1.1);
+      box-shadow: 0 12px 36px rgba(16, 125, 79, 0.55);
+    }
+  }
 }
-.wa-float:hover,
-.wa-float:focus-visible {
-  transform: scale(1.1);
-  box-shadow: 0 12px 36px rgba(16, 125, 79, 0.55);
+
+@media (scripting: none) {
+  .wa-float {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+
+    &:hover,
+    &:focus-visible {
+      transform: scale(1.1);
+      box-shadow: 0 12px 36px rgba(16, 125, 79, 0.55);
+    }
+  }
 }
+
 .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+

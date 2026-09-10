@@ -106,3 +106,21 @@ const observadorCifras = new IntersectionObserver((entradas) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('[data-count]').forEach(c => observadorCifras.observe(c));
+
+// ── Botón flotante de WhatsApp: aparición diferida tras superar el hero
+const waFloat = document.querySelector('.wa-float');
+const hero = document.getElementById('inicio');
+
+if (waFloat && hero) {
+  if ('IntersectionObserver' in window) {
+    const observadorWa = new IntersectionObserver(([entry]) => {
+      waFloat.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    observadorWa.observe(hero);
+  } else {
+    window.addEventListener('scroll', () => {
+      const rect = hero.getBoundingClientRect();
+      waFloat.classList.toggle('visible', rect.bottom <= 0);
+    }, { passive: true });
+  }
+}

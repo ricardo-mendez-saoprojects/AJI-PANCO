@@ -7,7 +7,7 @@ Puntos pendientes y deuda técnica migrados desde `DOCUMENTACION.md` (§10) para
 - [x] **Ruta absoluta en 404.html (Línea 29):** (Resuelto en Fase 1) Cambiado `href="/"` por `href="index.html"` para compatibilidad con subdirectorios y GitHub Pages.
 
 ## 2. Importante (No bloqueante)
-- [ ] **[H-06] Solapamiento de botón flotante WhatsApp (.wa-float) en hero:** En pantallas móviles (360px y 393px), el botón fixed solapa la última tarjeta de `.hero-creds` («56 kg / CATEGORÍA»). Pendiente de decisión: opción A (aparición por scroll vía IntersectionObserver) u opción B (layout defensivo acotando ancho en CSS).
+- [x] **[H-06] Solapamiento de botón flotante WhatsApp (.wa-float) en hero:** Resuelto mediante aparición diferida por scroll vía IntersectionObserver sobre el Hero, con fallback CSS accesible `@media (scripting: none)`.
 - [ ] **Logotipo propio:** No existe marca gráfica personal de Andre. El favicon es provisional (marco de esquinas + «A») y la imagen de Open Graph reutiliza una foto de combate.
 - [x] **[D-04] Instagram profesional:** (Resuelto en Bloque A) Actualizadas las cuatro referencias en `index.html` (evento Hitman, sección contacto, footer) y el `sameAs` del JSON-LD a la cuenta oficial `@ajipanco.fernandez` (`https://www.instagram.com/ajipanco.fernandez/`).
 - [x] **[D-05] Franja de patrocinadores:** (Resuelto en Bloque A) Eliminadas las siluetas genéricas provisionales y reconfigurada la franja `.logo-band` a 3 columnas con `max-width: 880px` centrada (Kai Muay, SAOProjects y espacio para Marenca Real Estate).
