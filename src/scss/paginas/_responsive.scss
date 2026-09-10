@@ -35,3 +35,7 @@
   .footer-row { flex-direction: column; align-items: flex-start; }
   .wa-float { bottom: 16px; right: 16px; width: 48px; height: 48px; }
 }
+
+@media (max-width: 360px) {
+  .hero-nick { font-size: 3.6rem; }
+}
