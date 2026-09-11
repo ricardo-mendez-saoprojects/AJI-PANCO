@@ -99,6 +99,28 @@ function revIndex(done) {
   done();
 }
 
+// Añade y actualiza cache-busting (?v=<hash>) a las imágenes para que el navegador
+// invalide la caché automáticamente al actualizar cualquier asset en public/build/img.
+function revImages(done) {
+  for (const archivo of htmls) {
+    if (!fs.existsSync(archivo)) continue;
+    const html = fs.readFileSync(archivo, 'utf8');
+    const nuevo = html.replace(
+      /(public\/build\/img\/[a-zA-Z0-9_\-\.\/]+?\.(?:png|jpg|jpeg|webp|avif|svg))(?:\?v=[a-f0-9]+)?/g,
+      (match, relPath) => {
+        const fullPath = path.join(__dirname, relPath);
+        if (fs.existsSync(fullPath)) {
+          const hash = crypto.createHash('md5').update(fs.readFileSync(fullPath)).digest('hex').slice(0, 8);
+          return `${relPath}?v=${hash}`;
+        }
+        return match;
+      }
+    );
+    if (nuevo !== html) fs.writeFileSync(archivo, nuevo);
+  }
+  done();
+}
+
 // Deja en public/build/css solo lo que sirve producción: el app.<hash>.css de
 // esta build y paletas.css. Se borran los hashes de builds anteriores y también
 // el app.css sin minificar con su sourcemap que deja `npm run dev` — nadie lo
@@ -157,9 +179,11 @@ exports.imagenes    = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
 exports.fuentes     = fuentes;
+exports.revImages   = revImages;
 exports.dev   = series(parallel(css, cssPaletas, javascript, imagenes, versionWebp, versionAvif, fuentes), dev);
 exports.build = series(
   parallel(cssBuild, cssPaletas, javascript, imagenes, versionWebp, versionAvif, fuentes),
   revIndex,
+  revImages,
   limpiaCss
 );
