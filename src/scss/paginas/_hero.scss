@@ -1,3 +1,5 @@
+@use '../ui/animaciones' as *;
+
 .hero {
   position: relative;
   min-height: 100svh;          // svh evita el salto de la barra de Safari iOS
@@ -124,16 +126,14 @@
   color: var(--ash);
 }
 
-/* Franja de equipo y colaboradores bajo las credenciales. Los logotipos van
-   apagados: acompañan al hero, no compiten con el titular. */
+/* Franja de marcas/patrocinadores bajo las credenciales */
 .hero-logos { margin-top: 30px; }
 
 .hero-logos__label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--ash);
   margin-bottom: 14px;
@@ -143,23 +143,70 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-// flex:0 0 auto para que los logotipos no se encojan si la fila va justa: son
-// hijos de un flex y por defecto se aplastarían perdiendo la proporción.
-.hero-logos__fila a {
-  display: block;
-  line-height: 0;
-  flex: 0 0 auto;
+.hero-logos .ficha-logo {
+  position: relative;
+  overflow: hidden;
+  width: 136px;
+  height: 136px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--accent-2);
+  background: rgba(11, 8, 9, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+
+  &.ficha-logo--wide {
+    padding: 14px 16px;
+  }
+
+  picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.3);
+    opacity: 0.72;
+    transition: filter var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
+  }
+
+  &.ficha-logo--gym img {
+    opacity: 0.85;
+  }
+
+  @include efecto-espejo;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(179, 137, 63, 0.35);
+    border-color: #ffd27d;
+
+    img {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.04);
+    }
+  }
 }
 
-.hero-logos__fila img {
-  height: 80px;
-  width: auto;
-  filter: grayscale(1) brightness(1.5);
-  opacity: 0.6;
-  transition: filter var(--t-fast), opacity var(--t-fast);
-}
-.hero-logos__fila a:hover img,
-.hero-logos__fila a:focus-visible img { filter: none; opacity: 1; }

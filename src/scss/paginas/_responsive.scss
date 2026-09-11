@@ -35,6 +35,25 @@
   .footer { padding-bottom: 80px; }
   .footer-row { flex-direction: column; align-items: flex-start; }
   .wa-float { bottom: 16px; right: 16px; width: 48px; height: 48px; }
+  .top-float { bottom: 72px; right: 16px; width: 48px; height: 48px; }
+
+  .hero-logos__fila { gap: 14px; }
+  .hero-logos .ficha-logo {
+    width: 110px;
+    height: 110px;
+    padding: 16px;
+    border-radius: 16px;
+    &.ficha-logo--wide { padding: 11px 12px; }
+  }
+
+  .logo-band { gap: 12px; }
+  .logo-band .ficha-logo {
+    width: 96px;
+    height: 96px;
+    padding: 14px;
+    border-radius: 14px;
+    &.ficha-logo--wide { padding: 10px 11px; }
+  }
 }
 
 @media (max-width: 360px) {

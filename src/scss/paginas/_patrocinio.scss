@@ -1,3 +1,5 @@
+@use '../ui/animaciones' as *;
+
 .sponsor-banner {
   border-radius: var(--radius-lg);
   position: relative;
@@ -65,65 +67,78 @@
 }
 .sponsor-perks .perk span { font-size: 0.9rem; color: var(--ash); }
 
-/* Banda de logotipos de patrocinador */
+/* Banda de logotipos de patrocinador: fichas cuadradas con borde neutro */
 .logo-band {
-  border-radius: var(--radius);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
   margin: 38px auto 0;
   max-width: 880px;
 }
-.logo-slot {
-  background: var(--ink);
-  aspect-ratio: 16 / 7;
+
+.logo-band .ficha-logo {
+  position: relative;
+  overflow: hidden;
+  width: 140px;
+  height: 140px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: rgba(11, 8, 9, 0.6);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ash);
-  padding: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  box-sizing: border-box;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+
+  &.ficha-logo--wide {
+    padding: 14px 16px;
+  }
+
+  picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.3);
+    opacity: 0.72;
+    transition: filter var(--t-fast), opacity var(--t-fast), transform var(--t-fast);
+  }
+
+  &.ficha-logo--gym img {
+    opacity: 0.85;
+  }
+
+  @include efecto-espejo;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px -10px var(--accent-soft);
+    background: rgba(16, 12, 14, 0.85);
+
+    img {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.04);
+    }
+  }
 }
 
-// <picture> es un elemento en línea de alto automático, así que un `max-height`
-// en porcentaje sobre la <img> no tenía contra qué resolverse y el logotipo se
-// pintaba a tamaño natural, desbordando el hueco. El <picture> tiene que
-// ocupar la celda para que el porcentaje signifique algo.
-.logo-slot picture {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-
-// Los logotipos van en escala de grises y se colorean al pasar por encima:
-// así la banda no compite con el resto de la página y el gesto premia mirar.
-.logo-slot img {
-  max-height: 100%;
-  max-width: 80%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  filter: grayscale(1) brightness(1.4);
-  opacity: 0.72;
-  transition: filter var(--t-fast), opacity var(--t-fast);
-}
-.logo-slot:hover img { filter: none; opacity: 1; }
-
-// Huecos sin patrocinador: iconografía de Muay Thai en vez de un «Tu marca»
-// suelto, que dejaba la banda con pinta de plantilla a medio rellenar.
-.logo-slot--ico svg {
-  width: 46px; height: 46px;
-  opacity: 0.55;
-  transition: opacity var(--t-fast);
-}
-.logo-slot--ico:hover svg { opacity: 1; }
