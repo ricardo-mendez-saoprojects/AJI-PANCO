@@ -49,13 +49,15 @@ hamburger?.addEventListener('click', () => {
 mobileNav?.querySelectorAll('a').forEach(a => a.addEventListener('click', cerrarMenu));
 
 // ── Aparición al hacer scroll (una sola vez por elemento)
+// Usamos threshold: 0 con rootMargin negativo para que cualquier bloque (incluyendo
+// elementos altos como la galería de 5500px a 1 columna en móvil) dispare al asomar 40px en el viewport.
 const observadorReveal = new IntersectionObserver((entradas) => {
   entradas.forEach(entrada => {
     if (!entrada.isIntersecting) return;
     entrada.target.classList.add('in');
     observadorReveal.unobserve(entrada.target);
   });
-}, { threshold: 0.14 });
+}, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observadorReveal.observe(el));
 
@@ -107,20 +109,31 @@ const observadorCifras = new IntersectionObserver((entradas) => {
 
 document.querySelectorAll('[data-count]').forEach(c => observadorCifras.observe(c));
 
-// ── Botón flotante de WhatsApp: aparición diferida tras superar el hero
+// ── Botones flotantes (WhatsApp y Volver Arriba): aparición diferida tras superar el hero
 const waFloat = document.querySelector('.wa-float');
+const topFloat = document.querySelector('.top-float');
 const hero = document.getElementById('inicio');
 
-if (waFloat && hero) {
+if (hero && (waFloat || topFloat)) {
+  const toggleVisibles = (visible) => {
+    waFloat?.classList.toggle('visible', visible);
+    topFloat?.classList.toggle('visible', visible);
+  };
+
   if ('IntersectionObserver' in window) {
-    const observadorWa = new IntersectionObserver(([entry]) => {
-      waFloat.classList.toggle('visible', !entry.isIntersecting);
+    const observadorFlotantes = new IntersectionObserver(([entry]) => {
+      toggleVisibles(!entry.isIntersecting);
     }, { threshold: 0 });
-    observadorWa.observe(hero);
+    observadorFlotantes.observe(hero);
   } else {
     window.addEventListener('scroll', () => {
       const rect = hero.getBoundingClientRect();
-      waFloat.classList.toggle('visible', rect.bottom <= 0);
+      toggleVisibles(rect.bottom <= 0);
     }, { passive: true });
   }
 }
+
+topFloat?.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});

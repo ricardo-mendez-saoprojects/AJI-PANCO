@@ -3,7 +3,8 @@
 Puntos pendientes y deuda técnica migrados desde `DOCUMENTACION.md` (§10) para su seguimiento y resolución durante el ciclo de vida del proyecto.
 
 ## 1. Bloqueante para publicar
-- [ ] **Combate de Leeds:** El cartel actual no indica el año ni el resultado. Si ya se disputó, el bloque destacado debe actualizarse y pasar a la línea de tiempo cronológica.
+- [ ] **[H-10] Galería invisible en móvil vertical (375px / 440px):** En móvil vertical a 1 columna la galería mide 5583px. El `IntersectionObserver` con `threshold: 0.14` exige 781px visibles a la vez, lo cual supera el alto del viewport (667px), haciendo que nunca reciba la clase `.in` y permanezca en `opacity: 0`.
+- [ ] **[D-01] Combate de Leeds (Hitman Fight League):** Andre confirma que el resultado fue derrota por título europeo WMO y probablemente constituya un subcampeonato. No comentar ni rediseñar el bloque destacado; se mantiene en su estado actual a la espera de que el cliente proporcione su palmarés y recorrido completo.
 - [x] **Ruta absoluta en 404.html (Línea 29):** (Resuelto en Fase 1) Cambiado `href="/"` por `href="index.html"` para compatibilidad con subdirectorios y GitHub Pages.
 
 ## 2. Importante (No bloqueante)
