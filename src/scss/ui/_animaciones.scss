@@ -33,6 +33,48 @@
   animation: deslizar 18s linear infinite;
 }
 
+/* Efecto espejo / destello diagonal de reflejo para elementos premium */
+@keyframes brilloEspejo {
+  0%   { left: -130%; }
+  100% { left: 180%; }
+}
+
+@mixin efecto-espejo {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -130%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 35%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.05) 65%,
+      transparent 100%
+    );
+    transform: rotate(25deg);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover::after,
+    &:focus-visible::after,
+    &.shimmer-active::after {
+      animation: brilloEspejo 0.65s ease-out forwards;
+    }
+  }
+}
+
+.efecto-espejo {
+  @include efecto-espejo;
+}
+
 /* Respeta la preferencia del sistema: sin esto, el grano fijo más el reveal y
    la marquesina son molestos para quien tiene sensibilidad al movimiento. */
 @media (prefers-reduced-motion: reduce) {

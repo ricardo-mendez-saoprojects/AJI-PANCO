@@ -1,3 +1,5 @@
+@use 'animaciones' as *;
+
 .nav {
   position: fixed;
   top: 0;
@@ -85,7 +87,10 @@
   gap: 12px;
 }
 
-.nav-actions .btn { padding: 11px 20px; }
+.nav-actions .btn {
+  padding: 11px 20px;
+  @include efecto-espejo;
+}
 
 .nav-social {
   display: flex;
@@ -213,7 +218,10 @@
   transition: color 0.2s ease;
 }
 .mobile-nav a:not(.btn):hover { color: var(--accent-text); }
-.mobile-nav .btn { margin-top: 24px; }
+.mobile-nav .btn {
+  margin-top: 24px;
+  @include efecto-espejo;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .nav {

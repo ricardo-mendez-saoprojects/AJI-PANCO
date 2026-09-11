@@ -1,3 +1,5 @@
+@use '../ui/animaciones' as *;
+
 /* La sección de combates usa .cards de ui/_cards.scss. Aquí solo lo propio
    del bloque: la tarjeta destacada del próximo combate. */
 .combate-destacado {
@@ -30,8 +32,14 @@
   gap: 14px;
 }
 
-// El botón ocupa lo que piden su icono y su texto, no la columna entera.
-.combate-destacado .info .btn { align-self: flex-start; }
+// Botones de llamada a la acción (Instagram y TikTok) gemelos en anchura y con efecto espejo
+.combate-destacado .info .btn {
+  align-self: flex-start;
+  min-width: 232px;
+  max-width: 100%;
+  justify-content: center;
+  @include efecto-espejo;
+}
 
 .combate-destacado .titulo-evento {
   font-family: var(--font-head);
