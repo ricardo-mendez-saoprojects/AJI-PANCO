@@ -59,6 +59,13 @@
 }
 .combate-destacado .versus b { color: var(--accent-text); font-weight: 700; }
 
+.combate-destacado .desc {
+  font-size: 0.95rem;
+  color: var(--body);
+  line-height: 1.5;
+  margin: 2px 0 4px;
+}
+
 .combate-destacado .datos {
   display: flex;
   gap: 10px;

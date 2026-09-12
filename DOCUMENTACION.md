@@ -303,11 +303,11 @@ Además:
 
 ### Datos verificados
 
-- Récord **16-8-1**, con **2 victorias por KO** (25 combates profesionales)
+- Récord **17-9-1**, con **2 victorias por KO** (27 combates profesionales)
 - **Campeón Nacional de Perú (2012)** y **Campeón de España WMO (2024)**
 - **56 kg**, 170 cm, Madrid
 - Gimnasio: **Kai Muay Free Fighters**, Torrejón de Ardoz
-- Contacto: **640 801 536** (mánager) · WhatsApp y llamada
+- Contacto: **614 828 507** (SAOProjects Studio · representación) · WhatsApp y llamada
 - Instagram: [@andreesiitto._freefighters__](https://www.instagram.com/andreesiitto._freefighters__/) ·
   gimnasio: [@kaimuay.freefighters](https://www.instagram.com/kaimuay.freefighters)
 
@@ -388,7 +388,7 @@ termina en un proxy y Apache ve la petición como http. Misma nota que en `Web -
 - [ ] La home carga y el hero se ve bien encuadrado
 - [ ] El acordeón de Momentos se abre al pasar el ratón y con teclado
 - [ ] El mapa del gimnasio carga
-- [ ] Los botones de WhatsApp abren el chat con el 640 801 536
+- [ ] Los botones de WhatsApp abren el chat con el 614 828 507
 - [ ] En móvil: la hamburguesa abre el menú y se cierra con `Escape`
 - [ ] `/robots.txt` y `/sitemap.xml` responden
 - [ ] Consola del navegador sin errores

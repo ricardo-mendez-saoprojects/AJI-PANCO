@@ -4,7 +4,7 @@
   max-width: 820px;
   margin: 0 auto;
   position: relative;
-  padding-left: 34px;
+  padding-left: 50px;
 }
 
 .timeline::before {
@@ -21,11 +21,19 @@
 }
 .timeline li:last-child { padding-bottom: 0; }
 
+.timeline li::marker {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ash);
+  font-variant-numeric: tabular-nums;
+}
+
 .timeline li::before {
   border-radius: var(--radius-sm);
   content: "";
   position: absolute;
-  left: -34px; top: 7px;
+  left: -50px; top: 7px;
   width: 11px; height: 11px;
   background: var(--ink);
   border: 2px solid var(--accent);
@@ -51,3 +59,63 @@
   margin: 6px 0 6px;
 }
 .timeline p { color: var(--ash); font-size: 0.94rem; }
+
+/* Bloque de actualidad / estado presente (preparación en Tailandia) */
+.trayectoria-actual {
+  max-width: 820px;
+  margin: 0 auto 44px;
+  padding: 20px 24px;
+  background: rgba(210, 31, 44, 0.05);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.actual-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.actual-tag .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .actual-tag .dot {
+    animation: pulso-actual 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes pulso-actual {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.trayectoria-actual h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.22rem;
+  letter-spacing: -0.01em;
+  margin: 2px 0 0;
+  color: var(--bone);
+}
+
+.trayectoria-actual p {
+  color: var(--body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}

@@ -26,6 +26,17 @@
 }
 .gym-lista li b { color: var(--bone); font-weight: 600; }
 
+.gym-fotos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  .gym-foto {
+    margin-bottom: 0;
+  }
+}
+
 // Sin aspect-ratio ni `object-fit: cover`: la foto de entrenamiento es
 // vertical (1440×1799) y forzarla a 16/9 se comía la patada y la cabeza. La
 // altura la marca la imagen, igual que en las tarjetas de combate y la galería.
