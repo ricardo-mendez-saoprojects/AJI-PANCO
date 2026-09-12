@@ -27,6 +27,7 @@
   .stats { padding: 80px 0; }
 
   .hero { padding: 120px 20px 72px; }
+  .hero-media img { object-position: 25% 35%; }
   .hero-creds { flex-direction: column; width: 100%; }
   .hero-creds .cred { border-right: 0; border-bottom: 1px solid var(--line); }
   .hero-creds .cred:last-child { border-bottom: 0; }
