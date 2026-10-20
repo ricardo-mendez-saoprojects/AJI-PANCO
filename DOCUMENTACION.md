@@ -1,7 +1,7 @@
 # Andre Fernández «Aji-Panco» — Documentación del proyecto
 
 Web oficial de un peleador profesional de Muay Thai y K-1. Sitio estático de una sola
-página, construido con la misma arquitectura que `Web - SAOProjects` y `Web - Horario-CIB`.
+página, construido con la misma arquitectura que `Web - SAOProjects`.
 
 **Dominio:** https://andrefernandez.es
 **Repositorio:** https://github.com/ricardo-mendez-saoprojects/AJI-PANCO
@@ -12,28 +12,25 @@ página, construido con la misma arquitectura que `Web - SAOProjects` y `Web - H
 
 ## 1. De dónde viene el proyecto
 
-### 1.1 Los dos proyectos de referencia
+### 1.1 El proyecto de referencia
 
-`Web - SAOProjects` y `Web - Horario-CIB` comparten esqueleto: el README del CIB dice
-explícitamente que sigue *"la misma arquitectura que Web - SAOProjects"*. Ese es el patrón
-que se ha replicado aquí.
+`Web - SAOProjects` es el esqueleto de referencia. Ese es el patrón que se ha replicado aquí.
 
-| | SAOProjects | Horario-CIB | Aji-Panco |
-|---|---|---|---|
-| Gulp: SCSS + JS | ✅ | ✅ | ✅ |
-| Gulp: imágenes (imagemin + webp + avif) | ✅ | — | ✅ |
-| Hash de contenido en el CSS de producción | ✅ | — | ✅ + reescritura automática del `<link>` |
-| `public/build/` versionado | ✅ | ✅ | ✅ |
-| Conmutador de tema claro/oscuro | ✅ | ✅ | ❌ (solo oscuro, a propósito) |
-| Paletas alternativas conmutables | — | — | ✅ |
+| | SAOProjects | Aji-Panco |
+|---|---|---|
+| Gulp: SCSS + JS | ✅ | ✅ |
+| Gulp: imágenes (imagemin + webp + avif) | ✅ | ✅ |
+| Hash de contenido en el CSS de producción | ✅ | ✅ + reescritura automática del `<link>` |
+| `public/build/` versionado | ✅ | ✅ |
+| Conmutador de tema claro/oscuro | ✅ | ❌ (solo oscuro, a propósito) |
+| Paletas alternativas conmutables | — | ✅ |
 
 Reglas de la casa que se han mantenido:
 
 - **CSS custom properties en `:root`** para todo lo que pueda cambiar.
 - **Una única fuente de verdad para el acento de marca**; el resto se compone a partir de ahí.
 - **Los contrastes AA se calculan y se anotan en un comentario junto al token.** En SAO se
-  oscureció el verde de WhatsApp de 1,98:1 a 5,16:1 por esto; el CIB abre su archivo de
-  variables con la tabla de ratios contra sus dos superficies.
+  oscureció el verde de WhatsApp de 1,98:1 a 5,16:1 por esto.
 - **JS plano**, sin módulos: nav con `.scrolled`, hamburguesa con focus trap y
   `aria-expanded`, `IntersectionObserver` con `unobserve`, `prefers-reduced-motion` respetado.
 - **Cabeza completa**: OG, Twitter Card, canonical, JSON-LD, `robots.txt`, `sitemap.xml`,
